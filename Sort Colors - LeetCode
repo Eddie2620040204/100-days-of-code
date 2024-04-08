@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int l = 0; // Pointer for 0s
+        int m = 0; // Pointer for traversal
+        int h = nums.size() - 1; // Pointer for 2s
+
+        // Traverse the array
+        while (m <= h) {
+            if (nums[m] == 0) {
+                // Swap nums[m] with nums[l]
+                swap(nums[l], nums[m]);
+                l++; // Move l pointer to the right
+                m++; // Move m pointer to the right
+            } else if (nums[m] == 1) {
+                // No action needed for 1s, move m pointer
+                m++;
+            } else {
+                // nums[m] is 2, swap nums[m] with nums[h]
+                swap(nums[m], nums[h]);
+                h--; // Move h pointer to the left
+                // Don't increment m since nums[m] is now unknown after swapping
+            }
+        }
+    }
+};
