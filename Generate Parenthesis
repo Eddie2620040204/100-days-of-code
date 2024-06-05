@@ -1,0 +1,21 @@
+class Solution {
+public:
+    void helper(string str,int left,int n,vector<string> &ans){
+        if(str.size() == n*2){
+            if(left==n) ans.push_back(str);
+            return;
+        }
+        if(left<=n && left>0){
+            helper(str+'(',left-1,n, ans);
+        }
+        if(left>=0 && left<n){
+            helper(str+')',left+1,n, ans);
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+        string str;
+        helper(str, n, n, ans);
+        return ans;
+    }
+};
