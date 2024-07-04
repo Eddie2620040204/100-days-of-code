@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+        int res = 0;
+        int cnt = 0; for(; left >= (1ll<<cnt); cnt++){}
+        if(1ll<<cnt <= right) return 0;
+        if(left==right) return left;
+        
+        res += 1ll<<(--cnt);
+        left -= 1ll<<(cnt); right -= 1ll<<cnt;
+        return res + rangeBitwiseAnd(left, right);
+    }
+};
