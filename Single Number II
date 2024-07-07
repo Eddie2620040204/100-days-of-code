@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int mask = 1;     // Mask to check each bit position
+        int ans = 0;      // Variable to store the final result
+        
+        for (int i = 0; i < 32; i++) {  // Iterate over each bit position
+            int cnt = 0;  // Counter to count the number of set bits at the current position
+            
+            for (int j = 0; j < nums.size(); j++) {
+                if (mask & nums[j]) {
+                    cnt++;  // Increment the counter if the bit is set at the current position
+                }
+            }
+            
+            if (cnt % 3) {
+                ans += ((cnt % 3) * mask);  // If the count is not a multiple of 3, add the bit value to the answer
+            }
+            
+            mask = mask << 1;  // Move the mask to the next bit position
+        }
+        
+        return ans;  // Return the final result
+    }
+};
